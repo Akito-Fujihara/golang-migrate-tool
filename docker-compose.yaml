@@ -1,0 +1,28 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: db
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: main
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: password
+      TZ: "Asia/Tokyo"
+    ports:
+      - 3306:3306
+
+  golang-migrate:
+    build:
+      context: ./golang-migrate
+    container_name: golang-migrate
+    working_dir: /golang-migrate
+    environment:
+      MYSQL_DATABASE: main
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./golang-migrate:/golang-migrate
+    tty: true
+    depends_on:
+      - db
