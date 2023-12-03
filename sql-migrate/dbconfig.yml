@@ -1,4 +1,4 @@
- development:
-   dialect: mysql
-   datasource: docker:password@tcp(db:3306)/main?parseTime=true
-   dir: ./migrate/
+development:
+  dialect: mysql
+  datasource: docker:password@tcp(db:3306)/main?parseTime=true
+  dir: ./migrate/
