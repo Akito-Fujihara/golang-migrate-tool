@@ -26,3 +26,18 @@ services:
     tty: true
     depends_on:
       - db
+
+  sql-migrate:
+    build:
+      context: ./sql-migrate
+    container_name: sql-migrate
+    working_dir: /sql-migrate
+    environment:
+      MYSQL_DATABASE: main
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./sql-migrate:/sql-migrate
+    tty: true
+    depends_on:
+      - db
